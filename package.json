@@ -1,0 +1,23 @@
+{
+  "name": "vuepress-md",
+  "version": "1.0.0",
+  "description": "基于vuepress的文档网站",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev docs ",
+    "build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "lswang",
+  "license": "ISC",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.2.0",
+    "vuepress": "^1.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
