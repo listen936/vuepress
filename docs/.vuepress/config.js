@@ -18,25 +18,18 @@ module.exports = {
             { text: 'Article', link: '/article/' },
             { text: 'Github', link: 'https://github.com/listen936' },
         ],
-        sidebar: {
-            '/foo/': [
-                '',     /* /foo/ */
-                'one',  /* /foo/one.html */
-                'two'   /* /foo/two.html */
-            ],
-
-            '/bar/': [
-                '',      /* /bar/ */
-                'three', /* /bar/three.html */
-                'four'   /* /bar/four.html */
-            ],
-
-            // fallback
-            '/': [
-                '',        /* / */
-                'about'    /* /about.html */
-            ]
-        },
+        // sidebar:'auto',
+        sidebar: [
+            {
+              title: '其他',   // 必要的
+              path: '/article/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+              collapsable: true, // 可选的, 默认值是 true,
+              sidebarDepth: 3,    // 可选的, 默认值是 1
+              children: [
+                ['/article/other/markdown','markdown的常用语法']
+              ]
+            },
+          ],
 
         lastUpdated: 'Last Updated',
     }
