@@ -15,12 +15,29 @@ module.exports = {
         logo: '/logo.png',
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'Guide', link: '/guide/' },
+            { text: 'Article', link: '/article/' },
             { text: 'Github', link: 'https://github.com/listen936' },
         ],
-        sidebar: [
-            '/'
-        ],
+        sidebar: {
+            '/foo/': [
+                '',     /* /foo/ */
+                'one',  /* /foo/one.html */
+                'two'   /* /foo/two.html */
+            ],
+
+            '/bar/': [
+                '',      /* /bar/ */
+                'three', /* /bar/three.html */
+                'four'   /* /bar/four.html */
+            ],
+
+            // fallback
+            '/': [
+                '',        /* / */
+                'about'    /* /about.html */
+            ]
+        },
+
         lastUpdated: 'Last Updated',
     }
 }
