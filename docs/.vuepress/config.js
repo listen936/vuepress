@@ -22,13 +22,22 @@ module.exports = {
         sidebar: [
             {
               title: '其他',   // 必要的
-              path: '/article/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-              collapsable: true, // 可选的, 默认值是 true,
+            //   path: '/article/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+              collapsable: false, // 可选的, 默认值是 true,
               sidebarDepth: 3,    // 可选的, 默认值是 1
               children: [
                 ['/article/other/markdown','markdown的常用语法']
               ]
             },
+            {
+                title: 'Vue',   // 必要的
+                // path: '/article/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+                collapsable: false, // 可选的, 默认值是 true,
+                sidebarDepth: 3,    // 可选的, 默认值是 1
+                children: [
+                  ['/article/vue/xiushifu','vue的修饰符']
+                ]
+              },
           ],
 
         lastUpdated: 'Last Updated',
