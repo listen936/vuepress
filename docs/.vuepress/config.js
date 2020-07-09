@@ -24,7 +24,7 @@ module.exports = {
               title: '其他',   // 必要的
             //   path: '/article/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
               collapsable: false, // 可选的, 默认值是 true,
-              sidebarDepth: 3,    // 可选的, 默认值是 1
+              sidebarDepth: 2,    // 可选的, 默认值是 1
               children: [
                 ['/article/other/markdown','markdown的常用语法']
               ]
@@ -33,7 +33,7 @@ module.exports = {
                 title: 'Vue',   // 必要的
                 // path: '/article/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 collapsable: false, // 可选的, 默认值是 true,
-                sidebarDepth: 3,    // 可选的, 默认值是 1
+                sidebarDepth: 2,    // 可选的, 默认值是 1
                 children: [
                   ['/article/vue/xiushifu','vue的修饰符']
                 ]
@@ -42,9 +42,10 @@ module.exports = {
                 title: 'JS',   // 必要的
                 // path: '/article/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 collapsable: false, // 可选的, 默认值是 true,
-                sidebarDepth: 3,    // 可选的, 默认值是 1
+                sidebarDepth: 2,    // 可选的, 默认值是 1
                 children: [
-                  ['/article/js/es6ArrayMethos','ES6+中数组的方法']
+                  ['/article/js/es6ArrayMethos','ES6+中数组的方法'],
+                  ['/article/js/debounce&throtte','防抖和节流']
                 ]
               },
           ],
