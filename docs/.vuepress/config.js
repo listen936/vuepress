@@ -44,7 +44,8 @@ module.exports = {
         collapsable: false, // 可选的, 默认值是 true,
         sidebarDepth: 2, // 可选的, 默认值是 1
         children: [
-          ['/article/browser/render', '浏览器的渲染过程']
+          ['/article/browser/render', '浏览器的渲染过程'],
+          ['/article/browser/跨标签通信', '跨标签通信'],
         ]
       },
       {
