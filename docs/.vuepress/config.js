@@ -46,7 +46,6 @@ module.exports = {
         children: [
           ['/article/browser/render', '浏览器的渲染过程'],
           ['/article/browser/跨标签通信', '跨标签通信'],
-
         ]
       },
       {
