@@ -62,7 +62,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
             })
         } else if (self.status === PENDING) {
             self.onFulfilled.push(value => {
-
+                
                 try {
                     let x = onFulfilled(self.value)
                     resolvePromise(promise2, x, resolve, reject)
@@ -121,4 +121,97 @@ function resolePromise(promise2, x, resolve, reject) {
     }
 }
 
+```
+
+```js
+Promise.resolve = (param) => {
+    return new Promise((resolve, reject) => {
+        if (param && typeof param === 'object' || typeof param === 'function') {
+            param.then(resolve, reject)
+        } else {
+            resolve(param)
+        }
+    })
+}
+```
+
+```js
+Promise.reject = (param) => {
+    return new Promise((resolve, reject) => {
+        reject(param)
+    })
+}
+```
+
+```js
+Promise.all = (array) => {
+    array = Array.from(array)
+    return new Promise((resolve, reject) => {
+        let result = [],
+            index = 0;
+        if (array.length === 0) {
+            resolve(result)
+        } else {
+            for (let i = 0; i < array.length; i++) {
+                let current = array[i]
+                Promise.resolve(current).then(data => {
+                    processData(i, data)
+                }, err => {
+                    reject(err)
+                    return;
+                })
+            }
+
+            function processData(n, data) {
+                result[n] = data
+                if (++index === array.length) {
+                    resolve(result)
+                }
+            }
+        }
+
+    })
+}
+```
+
+```js
+Promise.race = (array) => {
+    array = Array.from(array)
+    return new Promise((resolve, reject) => {
+        if (array.length === 0) {
+            return
+        } else {
+            for (let i = 0; i < array.length; i++) {
+                Promise.resolve(array[i]).then(data => {
+                    resolve(data)
+                    return
+                }, err => {
+                    reject(err)
+                    return
+                })
+            }
+        }
+    })
+}
+```
+
+```js
+Promise.prototype.finally = (callback) => {
+    return this.then(data => {
+        return Promise.resolve(callback).then(() => {
+            return data
+        })
+    }, err => {
+        return Promise.resolve(callback).then(() => {
+            throw err
+        })
+    })
+
+}
+```
+
+```js
+Promise.prototype.catch = (onRejected) => {
+    return this.then(null, onRejected)
+}
 ```

@@ -1,5 +1,5 @@
 const PENDING = "pending"
-const FULFIIED = 'fulfilled'
+const FULFILLED = 'fulfilled'
 const REJECTED = "rejected"
 
 function Promise(executor) {
@@ -10,7 +10,7 @@ function Promise(executor) {
 
     function resolve(value) {
         if (self.status === PENDING) {
-            self.status = FULFIIED
+            self.status = FULFILLED
             self.value = value
             self.onFulfilled.forEach(fn => fn())
         }
@@ -37,7 +37,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
     };
     let self = this
     let promise2 = new Promise((resolve, reject) => {
-        if (self.status === FULFIIED) {
+        if (self.status === FULFILLED) {
             setTimeout(() => {
                 try {
                     let x = onFulfilled(self.value)
@@ -114,4 +114,80 @@ function resolePromise(promise2, x, resolve, reject) {
     } else {
         resolve(x)
     }
+}
+
+Promise.resolve = (param) => {
+    return new Promise((resolve, reject) => {
+        if (param && typeof param === 'object' || typeof param === 'function') {
+            param.then(resolve, reject)
+        } else {
+            resolve(param)
+        }
+    })
+}
+Promise.reject = (param) => {
+    return new Promise((resolve, reject) => {
+        reject(param)
+    })
+}
+Promise.all = (array) => {
+    array = Array.from(array)
+    return new Promise((resolve, reject) => {
+        let result = [],
+            index = 0;
+        if (array.length === 0) {
+            resolve(result)
+        } else {
+            for (let i = 0; i < array.length; i++) {
+                let current = array[i]
+                Promise.resolve(current).then(data => {
+                    processData(i, data)
+                }, err => {
+                    reject(err)
+                    return;
+                })
+            }
+
+            function processData(n, data) {
+                result[n] = data
+                if (++index === array.length) {
+                    resolve(result)
+                }
+            }
+        }
+
+    })
+}
+Promise.race = (array) => {
+    array = Array.from(array)
+    return new Promise((resolve, reject) => {
+        if (array.length === 0) {
+            return
+        } else {
+            for (let i = 0; i < array.length; i++) {
+                Promise.resolve(array[i]).then(data => {
+                    resolve(data)
+                    return
+                }, err => {
+                    reject(err)
+                    return
+                })
+            }
+        }
+    })
+}
+Promise.prototype.finally = (callback) => {
+    return this.then(data => {
+        return Promise.resolve(callback).then(() => {
+            return data
+        })
+    }, err => {
+        return Promise.resolve(callback).then(() => {
+            throw err
+        })
+    })
+
+}
+Promise.prototype.catch = (onRejected) => {
+    return this.then(null, onRejected)
 }
