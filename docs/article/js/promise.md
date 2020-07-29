@@ -198,11 +198,11 @@ Promise.race = (array) => {
 ```js
 Promise.prototype.finally = (callback) => {
     return this.then(data => {
-        return Promise.resolve(callback).then(() => {
+        return Promise.resolve(callback()).then(() => {
             return data
         })
     }, err => {
-        return Promise.resolve(callback).then(() => {
+        return Promise.resolve(callback()).then(() => {
             throw err
         })
     })
