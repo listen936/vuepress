@@ -81,8 +81,8 @@ module.exports = {
         collapsable: false, // 可选的, 默认值是 true,
         sidebarDepth: 2, // 可选的, 默认值是 1
         children: [
-          ['/article/js/es6ArrayMethos', 'ES6+中数组的方法'],
-          ['/article/js/debounce&throtte', '防抖和节流']
+          ['/article/js/es6ArrayMethods', 'ES6+中数组的方法'],
+          ['/article/js/debounce&throttle', '防抖和节流']
         ]
       },
     ],
