@@ -82,7 +82,10 @@ module.exports = {
         sidebarDepth: 2, // 可选的, 默认值是 1
         children: [
           ['/article/js/es6ArrayMethods', 'ES6+中数组的方法'],
-          ['/article/js/debounce&throttle', '防抖和节流']
+          ['/article/js/debounce&throttle', '防抖和节流'],
+          ['/article/js/promise.md', 'Promise'],
+          ['/article/js/js执行上下文.md', 'js执行上下文'],
+          ['/article/js/bind&call&apply.md', 'bind&call&apply'],
         ]
       },
     ],
